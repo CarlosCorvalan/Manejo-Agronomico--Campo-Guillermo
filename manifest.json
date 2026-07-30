@@ -1,0 +1,25 @@
+{
+  "name": "NPI - LM · Campamento Guillermo",
+  "short_name": "NPI - LM",
+  "description": "Stock de químicos, historial de manejo agronómico y biblioteca de consulta del Campamento Guillermo.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F3F6F1",
+  "theme_color": "#1F6B4C",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
