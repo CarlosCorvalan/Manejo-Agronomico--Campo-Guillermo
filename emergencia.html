@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergencia · Depósito de Agroquímicos</title>
+<style>
+  :root{--red:#C62828;--red-d:#8E1B1B;--blue:#00539F;--navy:#003057;--bg:#F3F5F2;--ink:#171E1A;--soft:#616B62;--line:#E1E6DC;--green:#2E7D32;--amber:#C68A2E;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 40px}
+  .preview{background:#FFF3CD;color:#7a5b00;font-size:.75rem;text-align:center;padding:6px 10px}
+  header{background:linear-gradient(135deg,var(--red) 0%,var(--red-d) 100%);color:#fff;padding:18px 16px 22px;border-radius:0 0 22px 22px;box-shadow:0 6px 18px rgba(142,27,27,.25)}
+  header .tag{font-size:.68rem;letter-spacing:1.4px;text-transform:uppercase;opacity:.8}
+  header h1{margin:4px 0 2px;font-size:1.45rem;line-height:1.15}
+  header p{margin:0;font-size:.82rem;opacity:.9}
+  .sos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+  .sos a{background:#fff;color:var(--ink);text-decoration:none;border-radius:14px;padding:10px 4px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+  .sos a b{display:block;font-size:1.35rem;color:var(--red)}
+  .sos a span{font-size:.65rem;color:var(--soft);text-transform:uppercase;letter-spacing:.5px}
+  h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--soft);margin:22px 4px 8px}
+  .card{background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(23,30,26,.07);border:1px solid var(--line)}
+  .contacts{padding:4px 14px}
+  .contacts a{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+  .contacts a:last-child{border:none}
+  .ico{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+  .contacts .n{font-weight:600;font-size:.92rem}
+  .contacts .r{font-size:.74rem;color:var(--soft)}
+  .contacts .t{margin-left:auto;font-weight:700;color:var(--blue);font-size:.88rem;white-space:nowrap}
+  .epp{display:flex;gap:8px;overflow-x:auto;padding:12px 12px}
+  .epp div{flex:0 0 auto;width:78px;text-align:center;font-size:.68rem;color:var(--soft)}
+  .epp i{display:flex;width:50px;height:50px;margin:0 auto 5px;border-radius:50%;background:var(--blue);color:#fff;align-items:center;justify-content:center;font-style:normal;font-size:1.4rem}
+  .steps{padding:6px 14px 10px;margin:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;display:flex;gap:10px;padding:8px 0;font-size:.88rem;border-bottom:1px solid var(--line)}
+  .steps li:last-child{border:none}
+  .steps li:before{content:counter(s);flex:0 0 24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .search{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0}
+  .search input{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);font-size:1rem;background:#fff}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;font-size:.76rem;color:var(--soft);cursor:pointer}
+  .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .prod{padding:14px;margin-bottom:10px}
+  .prod .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .prod h3{margin:0;font-size:1.02rem}
+  .prod .ia{font-size:.74rem;color:var(--soft);margin-top:2px}
+  .pill{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap}
+  .pill.cat{background:#E0EDF8;color:var(--blue)}
+  .stockrow{display:flex;align-items:baseline;justify-content:space-between;margin:12px 0 5px}
+  .stockrow b{font-size:1.25rem}
+  .stockrow span{font-size:.72rem;color:var(--soft)}
+  .bar{height:8px;background:#EDF1E8;border-radius:6px;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:6px}
+  .venc{font-size:.72rem;margin-top:6px;color:var(--soft)}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .btns a{text-align:center;text-decoration:none;font-weight:700;font-size:.85rem;padding:12px 6px;border-radius:12px}
+  .b-sds{background:var(--red);color:#fff}
+  .b-mar{background:#E0EDF8;color:var(--navy)}
+  .b-off{background:#EEE;color:#999;pointer-events:none}
+  .warn{color:var(--red);font-weight:700}
+  footer{text-align:center;font-size:.7rem;color:var(--soft);margin-top:26px}
+</style>
+</head>
+<body>
+<div class="preview" id="estado" style="display:none"></div>
+<header>
+  <div class="wrap" style="padding:0">
+    <div class="tag">Campamento Guillermo · NPI</div>
+    <h1>🚨 Emergencia<br>Depósito de agroquímicos</h1>
+    <p>Hojas de seguridad, marbetes y stock actual.</p>
+    <div class="sos">
+      <a href="tel:107"><b>107</b><span>Ambulancia</span></a>
+      <a href="tel:100"><b>100</b><span>Bomberos</span></a>
+      <a href="tel:101"><b>101</b><span>Policía</span></a>
+      <a href="tel:911"><b>911</b><span>Emergencias</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <h2>Intoxicación · Toxicología</h2>
+  <div class="card contacts">
+    <a href="tel:08008888694"><div class="ico">☠️</div><div><div class="n">TAS · Toxicología</div><div class="r">Asesoramiento y servicios</div></div><div class="t">0800 888 8694</div></a>
+  </div>
+
+  <h2>Contactos Syngenta</h2>
+  <div class="card contacts">
+    <a href="tel:+543462540682"><div class="ico">🦺</div><div><div class="n">Emanuel González</div><div class="r">HSE</div></div><div class="t">03462 15 540682</div></a>
+    <a href="tel:+543462602488"><div class="ico">🌾</div><div><div class="n">Carlos Corvalán</div><div class="r">Supervisor de Campo NPI</div></div><div class="t">03462 15 602488</div></a>
+    <a href="tel:+543462615032"><div class="ico">👤</div><div><div class="n">Santiago Aquino</div><div class="r">Coordinador</div></div><div class="t">03462 15 615032</div></a>
+    <a href="tel:+543462668928"><div class="ico">👤</div><div><div class="n">Diego Seres</div><div class="r">Gerente</div></div><div class="t">03462 15 668928</div></a>
+  </div>
+
+  <h2>ART · La Segunda</h2>
+  <div class="card contacts">
+    <a href="tel:08004442782"><div class="ico">🏥</div><div><div class="n">Denuncia de accidente</div><div class="r">Grupo Asegurador La Segunda</div></div><div class="t">0800 444 2782</div></a>
+    <a href="tel:08007770036"><div class="ico">🏥</div><div><div class="n">Línea alternativa</div><div class="r">La Segunda ART</div></div><div class="t">0800 777 0036</div></a>
+  </div>
+
+  <h2>Protección personal (EPP)</h2>
+  <div class="card epp">
+    <div><i>🥽</i>Protección ocular</div>
+    <div><i>😷</i>Protección respiratoria*</div>
+    <div><i>🧤</i>Guantes de nitrilo</div>
+    <div><i>🥼</i>Traje impermeable*</div>
+    <div><i>🥾</i>Botas</div>
+  </div>
+  <div style="font-size:.7rem;color:var(--soft);margin:4px 6px">* Según producto, ver hoja de seguridad.</div>
+
+  <h2>Si hay un accidentado</h2>
+  <ol class="card steps">
+    <li><span><b>Atender a la persona.</b> Primeros auxilios y atención médica (traslado o ambulancia).</span></li>
+    <li><span><b>Informar a HSE</b> y al jefe de línea.</span></li>
+    <li><span><b>Acompañar</b> al accidentado y asistir en lo que necesite.</span></li>
+    <li><span><b>Denunciar a la ART.</b></span></li>
+    <li><span><b>Análisis inicial:</b> qué pasó, cómo, dónde y cuándo. Recoger evidencias (fotos).</span></li>
+  </ol>
+
+  <h2>Productos en depósito</h2>
+  <div class="search">
+    <input id="q" type="search" placeholder="Buscar producto o ingrediente activo…" autocomplete="off">
+    <div class="chips" id="chips"></div>
+  </div>
+  <div id="list"></div>
+
+  <footer>Datos de stock actualizados: <span id="fecha">…</span><br>Supervisor de Campo NPI · Carlos Corvalán</footer>
+</div>
+
+<script>
+const SUPA_URL='https://aljgksevggwtfndqxoiy.supabase.co';
+const SUPA_KEY='sb_publishable_IEGX-ej9_w-tksybzT2Vfw_riE98P7m';
+const CACHE_KEY='emergencia_cache_v1';
+let DATA=[], cat='Todos', term='';
+const $=s=>document.querySelector(s);
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:null;
+function aviso(txt,warn){const e=$('#estado');e.style.display='block';e.textContent=txt;e.style.background=warn?'#FDE2E0':'#FFF3CD';e.style.color=warn?'#8E1B1B':'#7a5b00';}
+async function cargar(){
+  try{
+    const r=await fetch(SUPA_URL+'/rest/v1/v_emergencia?select=*&order=nombre.asc',{headers:{apikey:SUPA_KEY,Authorization:'Bearer '+SUPA_KEY}});
+    if(!r.ok) throw new Error(r.status);
+    DATA=await r.json();
+    try{localStorage.setItem(CACHE_KEY,JSON.stringify({t:Date.now(),d:DATA}));}catch(e){}
+    $('#fecha').textContent=new Date().toLocaleString('es-AR');
+  }catch(e){
+    let c=null; try{c=JSON.parse(localStorage.getItem(CACHE_KEY));}catch(_){}
+    if(c&&c.d){DATA=c.d;$('#fecha').textContent=new Date(c.t).toLocaleString('es-AR');aviso('Sin conexión · mostrando los datos guardados el '+new Date(c.t).toLocaleString('es-AR'),true);}
+    else{DATA=[];aviso('Sin conexión y sin datos guardados. Los teléfonos de arriba funcionan igual.',true);}
+  }
+  armarChips(); render();
+}
+function armarChips(){
+  const cats=['Todos',...new Set(DATA.map(p=>p.categoria).filter(Boolean))];
+  if(!cats.includes(cat)) cat='Todos';
+  $('#chips').innerHTML=cats.map(c=>`<span class="chip ${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</span>`).join('');
+}
+$('#chips').onclick=e=>{const c=e.target.dataset.c; if(!c) return; cat=c; document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.dataset.c===c)); render();};
+$('#q').oninput=e=>{term=e.target.value.toLowerCase(); render();};
+function diasA(f){return f?Math.round((new Date(f+'T12:00:00')-new Date())/864e5):null}
+function render(){
+  const rows=DATA.filter(p=>(cat==='Todos'||p.categoria===cat)&&((p.nombre||'')+' '+(p.ingrediente_activo||'')).toLowerCase().includes(term));
+  $('#list').innerHTML=rows.map(p=>{
+    const stock=Number(p.stock)||0, max=Number(p.stock_max)||0;
+    const pct=max>0?Math.max(0,Math.min(100,Math.round(stock/max*100))):(stock>0?100:0);
+    const col=stock<=0?'#C62828':pct<25?'#C68A2E':'#2E7D32';
+    const d=diasA(p.proximo_vencimiento);
+    const vtxt=d==null?'Sin vencimiento cargado':d<0?`<span class="warn">Vencido hace ${-d} días</span>`:d<=60?`<span class="warn">Vence en ${d} días</span>`:`Vence ${new Date(p.proximo_vencimiento+'T12:00:00').toLocaleDateString('es-AR')}`;
+    const sds=safeUrl(p.ficha_url), mar=safeUrl(p.marbete_url);
+    return `<div class="card prod">
+      <div class="top"><div><h3>${esc(p.nombre)}</h3><div class="ia">${esc(p.ingrediente_activo||'')}</div></div>${p.categoria?`<span class="pill cat">${esc(p.categoria)}</span>`:''}</div>
+      <div class="stockrow"><b style="color:${col}">${+stock.toFixed(2)} ${esc(p.unidad||'')}</b><span>${stock<=0?'SIN STOCK':'en depósito'}</span></div>
+      <div class="bar"><i style="width:${pct}%;background:${col}"></i></div>
+      <div class="venc">${vtxt}</div>
+      <div class="btns">
+        <a class="${sds?'b-sds':'b-off'}" ${sds?`href="${esc(sds)}" target="_blank" rel="noopener"`:''}>📄 ${sds?'Hoja de seguridad':'Sin hoja de seguridad'}</a>
+        <a class="${mar?'b-mar':'b-off'}" ${mar?`href="${esc(mar)}" target="_blank" rel="noopener"`:''}>🏷️ ${mar?'Marbete':'Sin marbete'}</a>
+      </div></div>`;
+  }).join('')||'<div class="card" style="padding:18px;text-align:center;color:#616B62">Sin resultados</div>';
+}
+cargar();
+</script>
+</body>
+</html>
